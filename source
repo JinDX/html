@@ -113373,7 +113373,7 @@ location.href = '#foo';</code></pre>
    <li><p>Set <var>document</var>'s <span data-x="doc-history">history object</span>'s <span
    data-x="concept-history-length">length</span> to <var>scriptHistoryLength</var>.</p></li>
 
-   <li><p>Let <var>navigation</var> be <var>history</var>'s <span>relevant global object</span>'s
+   <li><p>Let <var>navigation</var> be <var>document</var>'s <span>relevant global object</span>'s
    <span data-x="window-navigation-api">navigation API</span>.</p></li>
 
    <li>
@@ -113458,8 +113458,11 @@ location.href = '#foo';</code></pre>
      <li><p>If <var>navigation</var>'s <span
      data-x="navigation-activation">activation</span> is null, then set <var>navigation</var>'s
      <span data-x="navigation-activation">activation</span> to a new
-     <code>NavigationActivation</code> object in <var>navigation</var>'s
-     <span data-x="concept-relevant-realm">relevant realm</span>.</p></li>
+     <code>NavigationActivation</code> object in <var>navigation</var>'s <span
+     data-x="concept-relevant-realm">relevant realm</span>.</p></li>
+
+     <li><p>Let <var>activation</var> be <var>navigation</var>'s <span
+     data-x="navigation-activation">activation</span>.</p></li>
 
      <li><p>Let <var>previousEntryIndex</var> be the result of
      <span>getting the navigation API entry index</span> of <var>previousEntryForActivation</var>
@@ -113510,8 +113513,8 @@ location.href = '#foo';</code></pre>
      data-x="concept-document-navigation-id">during-loading navigation ID for WebDriver BiDi</span>
      is not null.</p></li>
 
-     <li><p>Invoke <span>WebDriver BiDi navigation committed</span> with <var>navigable</var> and a
-     new <span>WebDriver BiDi navigation status</span> whose <span
+     <li><p>Invoke <span>WebDriver BiDi navigation committed</span> with <var>document</var>'s
+     <span>node navigable</span> and a new <span>WebDriver BiDi navigation status</span> whose <span
      data-x="navigation-status-id">id</span> is <var>document</var>'s <span
      data-x="concept-document-navigation-id">during-loading navigation ID for WebDriver BiDi</span>,
      <span data-x="navigation-status-status">status</span> is "<code
