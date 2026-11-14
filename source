@@ -18251,7 +18251,7 @@ interface <dfn interface>HTMLMetaElement</dfn> : <span>HTMLElement</span> {
      <li><p>If <var>value</var> is a <span>referrer policy</span>, then set <var>element</var>'s
      <span>node document</span>'s <span data-x="concept-document-policy-container">policy
      container</span>'s <span data-x="policy-container-referrer-policy">referrer policy</span> to
-     <var>policy</var>.</p></li>
+     <var>value</var>.</p></li>
     </ol>
     </div>
 
