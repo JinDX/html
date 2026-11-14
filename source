@@ -87814,15 +87814,24 @@ dictionary <dfn dictionary>CommandEventInit</dfn> : <span>EventInit</span> {
 
     <ol>
      <li>
-      <p>If <var>entry</var> is a <span>focusable area</span>, and the <span>focused area of the
-      document</span> is not <var>entry</var>:</p>
+      <p>If <var>entry</var> is a <span>focusable area</span>:</p>
 
       <ol>
-       <li><p>Set <var>document</var>'s <span>relevant global object</span>'s <span
-       data-x="window-navigation-api">navigation API</span>'s <span>focus changed during ongoing
-       navigation</span> to true.</p></li>
+       <li><p>Let <var>document</var> be <var>entry</var>'s <span>DOM anchor</span>'s <span>node
+       document</span>.</p></li>
 
-       <li><p>Designate <var>entry</var> as the <span>focused area of the document</span>.</p>
+       <li><p>If <var>document</var>'s <span>focused area of the document</span> is not
+       <var>entry</var>:</p>
+
+        <ol>
+         <li><p>Set <var>document</var>'s <span>relevant global object</span>'s <span
+         data-x="window-navigation-api">navigation API</span>'s <span>focus changed during ongoing
+         navigation</span> to true.</p></li>
+
+         <li><p>Designate <var>entry</var> as <var>document</var>'s <span>focused area of the
+         document</span>.</p></li>
+        </ol>
+       </li>
       </ol>
      </li>
 
