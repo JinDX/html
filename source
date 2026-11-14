@@ -140736,7 +140736,7 @@ interface <dfn interface>Storage</dfn> {
    <li><p>If <span>this</span>'s <span data-x="concept-Storage-map">map</span>[<var>key</var>] does
    not <span data-x="map exists">exist</span>, then return.</p></li>
 
-   <li><p>Set <var>oldValue</var> to <span>this</span>'s <span
+   <li><p>Let <var>oldValue</var> be <span>this</span>'s <span
    data-x="concept-Storage-map">map</span>[<var>key</var>].</p></li>
 
    <li><p><span data-x="map remove">Remove</span> <span>this</span>'s <span
