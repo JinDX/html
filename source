@@ -132211,10 +132211,11 @@ dictionary <dfn dictionary>SanitizerConfig</dfn> {
    <span>map of setTimeout and setInterval IDs</span>.</p></li>
 
    <li>
-    <p>If the <span>surrounding agent</span>'s <span data-x="concept-agent-event-loop">event
-    loop</span>'s <span>currently running task</span> is a task that was created by this algorithm,
-    then let <var>nestingLevel</var> be the <span data-x="concept-task">task</span>'s <span>timer
-    nesting level</span>. Otherwise, let <var>nestingLevel</var> be 0.</p>
+    <p>Let <var>runningTask</var> be the <span>surrounding agent</span>'s <span
+    data-x="concept-agent-event-loop">event loop</span>'s <span>currently running task</span>.</p>
+
+    <p>If <var>runningTask</var> is not null and has a <span>timer nesting level</span>, then let
+    <var>nestingLevel</var> be that level. Otherwise, let <var>nestingLevel</var> be 0.</p>
 
     <p class="note">The task's <span>timer nesting level</span> is used both for nested calls to
     <code data-x="dom-setTimeout">setTimeout()</code>, and for the repeating timers created by
@@ -132233,8 +132234,7 @@ dictionary <dfn dictionary>SanitizerConfig</dfn> {
    <li><p>Let <var>uniqueHandle</var> be null.</p></li>
 
    <li>
-    <p>Let <var>task</var> be a <span data-x="concept-task">task</span> that runs the following
-    substeps:</p>
+    <p>Let <var>timerSteps</var> be the following steps:</p>
 
     <ol>
      <li><p><span>Assert</span>: <var>uniqueHandle</var> is a <span>unique internal value</span>,
@@ -132347,11 +132347,19 @@ dictionary <dfn dictionary>SanitizerConfig</dfn> {
 
    <li><p>Increment <var>nestingLevel</var> by one.</p></li>
 
-   <li><p>Set <var>task</var>'s <dfn>timer nesting level</dfn> to <var>nestingLevel</var>.</p></li>
+   <li>
+    <p>Let <var>completionStep</var> be an algorithm step which <span data-x="queue a global
+    task">queues a global task</span> on the <dfn export>timer task source</dfn> given
+    <var>global</var> to run these steps:</p>
 
-   <li><p>Let <var>completionStep</var> be an algorithm step which <span data-x="queue a global
-   task">queues a global task</span> on the <dfn export>timer task source</dfn> given
-   <var>global</var> to run <var>task</var>.</p></li>
+    <ol>
+     <li><p>Set the <span>surrounding agent</span>'s <span data-x="concept-agent-event-loop">event
+     loop</span>'s <span>currently running task</span>'s <dfn>timer nesting level</dfn> to
+     <var>nestingLevel</var>.</p></li>
+
+     <li><p>Perform <var>timerSteps</var>.</p></li>
+    </ol>
+   </li>
 
    <li><p>Set <var>uniqueHandle</var> to the result of <span data-x="run steps after a
    timeout">running steps after a timeout</span> given <var>global</var>, "<code
