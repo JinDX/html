@@ -132594,7 +132594,11 @@ function sendData(data) {
       const stringToSend = JSON.stringify(queuedToSend);
       queuedToSend.length = 0;
 
-      fetch("/endpoint", stringToSend);
+      fetch("/endpoint", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: stringToSend,
+      });
     });
   }
 }</code></pre>
