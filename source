@@ -135089,18 +135089,19 @@ worker.postMessage(offscreenCanvas, [offscreenCanvas]);</code></pre>
 
    <p>Then, in the worker, the following code will draw a rectangle moving from left to right:</p>
 
-   <pre><code class="js">let ctx, pos = 0;
-function draw(dt) {
+   <pre><code class="js">let ctx, startTime;
+function draw(timestamp) {
+  startTime ??= timestamp;
+  const pos = (timestamp - startTime) * 10 / 1000;
   ctx.clearRect(0, 0, 100, 100);
   ctx.fillRect(pos, 0, 10, 10);
-  pos += 10 * dt;
   requestAnimationFrame(draw);
 }
 
 self.onmessage = function(ev) {
   const transferredCanvas = ev.data;
   ctx = transferredCanvas.getContext("2d");
-  draw();
+  requestAnimationFrame(draw);
 };</code></pre>
   </div>
 
