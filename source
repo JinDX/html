@@ -117011,8 +117011,8 @@ new PaymentRequest(&hellip;); // Allowed to use
    </li>
 
    <li><p><span data-x="list sort">Sort in ascending order</span> <var>tags</var>, with
-   <var>tagA</var> being less than <var>tagB</var> if <var>tagA</var> is null, or if <var>tagA</var>
-   is <span>code unit less than</span> <var>tagB</var>.</p></li>
+   <var>tagA</var> being less than <var>tagB</var> if <var>tagB</var> is not null and either
+   <var>tagA</var> is null or <var>tagA</var> is <span>code unit less than</span> <var>tagB</var>.</p></li>
 
    <li><p>Return <var>tags</var>.</p></li>
   </ol>
